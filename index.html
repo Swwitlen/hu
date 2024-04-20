@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta charset="utf-8" />
+    <title>Ngọc Anh Ăn Cứt</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="d.css">
+    <style>
+      .center-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      img {
+        width: 350px;
+      }
+      .buttones {
+        width: 100%;
+        text-align: center;
+      }
+      .btn {
+        display: inline-block;
+      }
+      h2 {
+        color: white;
+        font-size: 18px;
+
+        padding-top: 2px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      .mainn a {
+        text-decoration: none;
+        position: absolute;
+        right: 2%;
+        color: red;
+        bottom: 2%;
+      }
+      #nooo {
+        background: transparent;
+        color: red;
+        border: none;
+      }
+      .nooo {
+        color: red;
+        font-weight: 700;
+        font-size: 25px;
+      }
+      #nobut {
+        background: red;
+      }
+      #yesbut {
+        background: green;
+        padding: 10px;
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+      h1 {
+        text-shadow: 0 0 10px rgba(255, 254, 255, 0.68);
+        font-family: cursive;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="app"
+      class="center-screen"
+      style="display: flex; flex-direction: column"
+    >
+    <p style="text-align: center; margin-top: 100px;">nếu thoát ra hoặc không chọn thì mi là loài súc vật khác</p>
+     <h1 style="text-align: center; margin-bottom: 20px; font-family: Arial, sans-serif;"> Mi có phải là dog không?????</h1>
+      <img
+        src="https://img2.thuthuatphanmem.vn/uploads/2018/12/31/hinh-dong-chu-meo-de-thuong_112054715.gif"
+        alt=""
+      />
+      <button
+        type="button"
+        class="btn btn-danger"
+        @click="changeText('noButton')"
+        id="nooo"
+      >
+        <h2 class="nooo" @click="changeText('heading') ">
+          {{ currentHeaderText }}
+        </h2>
+      </button>
+      <div class="buttones">
+        <button
+          type="button"
+          class="btn btn-success mr-2"
+          :style="{ fontSize: yesButtonSize + 'rem' }"
+          :key="yesButtonSize"
+          @click="yesButton"
+          id="yesbut"
+        >
+          Yes
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-danger"
+          @click="changeText('noButton')"
+          id="nobut"
+        >
+          <h2>No</h2>
+        </button>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          headerText: [
+            "",
+            "Cho trả lời lại lần nữa",
+            "câu trả lời không chính xác",
+            "câu trả lời này không được chấp nhận",
+            "đừng kiên trì với lựa chọn này nữa",
+            "mi có thể chọn câu trả lời khác",
+            "đáp án này không phải đáp án đúng",
+            "chọn cái này là sai rồi",
+            "chọn cái khác đi",
+            "đã nói là không được chọn đpas án này rồi",
+            "kiên trì thế",
+            "có kiên trì cũng không được đâu",
+            "thử chọn đáp án khác xem sao",
+          ],
+          confirmationMessages: [
+            "mi chắc chưa?",
+            "trả lời sai mất tiền đó nha",
+            "tuyệt đối chắc chắn chưa",
+          ],
+          currentHeaderTextIndex: 0,
+          currentConfirmationIndex: 0,
+          yesButtonSize: 1,
+        },
+        methods: {
+          changeText(button) {
+            if (button === "noButton") {
+              this.currentHeaderTextIndex =
+                (this.currentHeaderTextIndex + 1) % this.headerText.length;
+              this.currentConfirmationIndex =
+                (this.currentConfirmationIndex + 1) %
+                this.confirmationMessages.length;
+              this.yesButtonSize += 5;
+            }
+          },
+          yesButton() {
+            window.location.href = "date.html";
+          },
+        },
+        computed: {
+          currentHeaderText() {
+            return this.headerText[this.currentHeaderTextIndex];
+          },
+          currentConfirmationText() {
+            return this.confirmationMessages[this.currentConfirmationIndex];
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
